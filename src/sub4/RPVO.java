@@ -1,11 +1,15 @@
 package sub4;
 
 public class RPVO {
+	
 	//eldd_member
 	private String eldd_id;
 	private String eldd_pw;
-	private String eldd_name;
-	private char eldd_gender;
+	private String eldd_lastName;
+	private String eldd_firstName;
+	private String eldd_lastYomi;
+	private String eldd_firstYomi;
+	private String eldd_gender;
 	private int eldd_birth;
 	
 	//eldd_div
@@ -16,11 +20,11 @@ public class RPVO {
 	//eldd_food
 	private String eldd_foodName;
 	private int eldd_foodCode;
+	private String eldd_images;
+	
+	//eldd_log
 	private char eldd_wishList;
 	private char eldd_like;
-	
-	//eldd_search
-	private String eldd_searchT;
 	
 	//join - 성별
 	private int cntFC;
@@ -29,7 +33,8 @@ public class RPVO {
 	private int cntEF;
 	
 	//rank - 좋아요별
-	private int cntL;
+	private int top_wishList;
+	private int top_like;
 
 	public String getEldd_id() {
 		return eldd_id;
@@ -47,19 +52,42 @@ public class RPVO {
 		this.eldd_pw = eldd_pw;
 	}
 
-	public String getEldd_name() {
-		return eldd_name;
+	public String getEldd_lastName() {
+		return eldd_lastName;
 	}
 
-	public void setEldd_name(String eldd_name) {
-		this.eldd_name = eldd_name;
+	public void setEldd_lastName(String eldd_lastName) {
+		this.eldd_lastName = eldd_lastName;
 	}
 
-	public char getEldd_gender() {
+	public String getEldd_firstName() {
+		return eldd_firstName;
+	}
+
+	public void setEldd_firstName(String eldd_firstName) {
+		this.eldd_firstName = eldd_firstName;
+	}
+
+	public String getEldd_lastYomi() {
+		return eldd_lastYomi;
+	}
+
+	public void setEldd_lastYomi(String eldd_lastYomi) {
+		this.eldd_lastYomi = eldd_lastYomi;
+	}
+
+	public String getEldd_firstYomi() {
+		return eldd_firstYomi;
+	}
+
+	public void setEldd_firstYomi(String eldd_firstYomi) {
+		this.eldd_firstYomi = eldd_firstYomi;
+	}
+
+	public String getEldd_gender() {
 		return eldd_gender;
 	}
-
-	public void setEldd_gender(char eldd_gender) {
+	public void setEldd_gender(String eldd_gender) {
 		this.eldd_gender = eldd_gender;
 	}
 
@@ -111,6 +139,14 @@ public class RPVO {
 		this.eldd_foodCode = eldd_foodCode;
 	}
 
+	public String getEldd_images() {
+		return eldd_images;
+	}
+
+	public void setEldd_images(String eldd_images) {
+		this.eldd_images = eldd_images;
+	}
+
 	public char getEldd_wishList() {
 		return eldd_wishList;
 	}
@@ -125,14 +161,6 @@ public class RPVO {
 
 	public void setEldd_like(char eldd_like) {
 		this.eldd_like = eldd_like;
-	}
-
-	public String getEldd_searchT() {
-		return eldd_searchT;
-	}
-
-	public void setEldd_searchT(String eldd_searchT) {
-		this.eldd_searchT = eldd_searchT;
 	}
 
 	public int getCntFC() {
@@ -151,13 +179,26 @@ public class RPVO {
 		this.cntEF = cntEF;
 	}
 
-	public int getCntL() {
-		return cntL;
+	public int getTop_wishList() {
+		return top_wishList;
 	}
 
-	public void setCntL(int cntL) {
-		this.cntL = cntL;
+	public void setTop_wishList(int top_wishList) {
+		this.top_wishList = top_wishList;
 	}
+
+	public int getTop_like() {
+		return top_like;
+	}
+
+	public void setTop_like(int top_like) {
+		this.top_like = top_like;
+	}
+
+
+
+	
+	
 	
 	
 	

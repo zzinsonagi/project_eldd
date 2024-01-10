@@ -15,19 +15,10 @@ public class MemberDAO {
 		PreparedStatement pstmt = null;
 		
 		String sql = "insert into eldd_member "
-				+ " (eldd_id, eldd_pw, eldd_name, eldd_gender, eldd_birth) "
+				+ " (eldd_id, eldd_pw, eldd_lastName, eldd_firstName, eldd_lastYomi, eldd_firstYomi, eldd_gender, eldd_birth) "
 				+ " values "
-				+ " (?, ?, ?, ?, ?)";
-		
-		//성별 전환
-		//value 설정하실 때 이름만 여자/남자라고 해놓고서  1, 2라고 넘겨주시는 거면 이 부분은 필요 없습니다!
-		String gender = vo.getEldd_gender();
-		if(gender.equalsIgnoreCase("여자")) {
-			gender = "2";
-		}else {
-			gender = "1";
-		}
-		
+				+ " (?, ?, ?, ?, ?, ?, ?, ?)";
+
 		try {
 			
 			conn = DBmanager.getIns().getConn();
@@ -35,9 +26,12 @@ public class MemberDAO {
 			
 			pstmt.setString(1, vo.getEldd_id());
 			pstmt.setString(2, vo.getEldd_pw());
-			pstmt.setString(3, vo.getEldd_name());
-			pstmt.setString(4, gender); //그리고 이 부분은 vo.getEldd_gender()로 바꿔야 합니다
-			pstmt.setInt(5, vo.getEldd_birth());
+			pstmt.setString(3, vo.getEldd_lastName());
+			pstmt.setString(4, vo.getEldd_firstName());
+			pstmt.setString(5, vo.getEldd_lastYomi());
+			pstmt.setString(6, vo.getEldd_firstYomi());
+			pstmt.setString(7, vo.getEldd_gender());
+			pstmt.setString(8, vo.getEldd_birth());
 			
 			pstmt.executeUpdate();
 			
@@ -50,69 +44,30 @@ public class MemberDAO {
 	}//makeNewMember()
 	
 	
-	//아이디 중복 확인
-	//0으로 리턴되면 아이디가 없는 것이니 회원가입에서 확인용으로도 쓰시면 될듯합니다.
-	//1로 리턴되면 아이디가 있는 것입니다.
-	//경우에 따라 회원가입 당시 중복 아이디 확인 또는 로그인 때 아이디 확인으로 쓸 수 있습니다
-	public int idCheck(String eldd_id) {
+	public int memberCheck(String id, String pw) {
 		
-		Connection conn = null;
+		Connection conn = DBmanager.getIns().getConn();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = "select eldd_id from eldd_member where eldd_id = ?";
-		int returnNum = 0;
+		String sql = "select eldd_id, eldd_pw from eldd_member where eldd_id = ?";
+		
+		int result = 0;
 		
 		try {
 			
-			conn = DBmanager.getIns().getConn();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, eldd_id);
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				returnNum = 1;
-				return returnNum;
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			DBmanager.getIns().close(conn, pstmt, rs);
-		}
-		
-		return returnNum;
-		
-	}//loginCheck() end
-	
-	
-	//비밀번호 확인
-	//비밀번호가 일치하면 1, 일치하지 않으면 0을 리턴해줍니다
-	public int pwCheck(String eldd_id, String eldd_pw) {
-		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "select eldd_pw from eldd_member where eldd_id = "+eldd_id;
-		int compareA = 0;
-		int returnPw = 2;
-		
-		try {
-			
-			conn = DBmanager.getIns().getConn();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				compareA = rs.getInt("eldd_pw");
-				if(eldd_pw.equalsIgnoreCase("compareA")) {
-					returnPw = 3;
+				if(rs.getString("eldd_pw") != null && rs.getString("eldd_pw").equals(pw)) {
+					result = 1; //id와 pw 같아서 통과
 				} else {
-					return returnPw;
+					result = 0; //id는 일치하나 pw만 같지 않을 경우
 				}
 			} else {
-				return returnPw;
+				result = -1; //id가 존재하지 않는 경우
 			}
 			
 		} catch (Exception e) {
@@ -120,8 +75,9 @@ public class MemberDAO {
 		} finally {
 			DBmanager.getIns().close(conn, pstmt, rs);
 		}
-		return returnPw;
-	}
+		return result;
+	} //memberCheck() end
+	
 
 	
 }

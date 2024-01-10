@@ -18,30 +18,33 @@ public class makeMemberService implements Action {
 			e.printStackTrace();
 		}
 		
-		MemberDAO dao = new MemberDAO();
-		
-		String eldd_id = request.getParameter("eldd_id");
-		String eldd_pw = request.getParameter("eldd_pw");
-		String eldd_name = request.getParameter("eldd_name");
-		String eldd_gender = request.getParameter("eldd_gender");
-		int eldd_birth = Integer.parseInt(request.getParameter("eldd_birth"));
-		
-		int returnNum = dao.idCheck(eldd_id);
+		String eldd_id = request.getParameter("id");
+		String eldd_pw = request.getParameter("pw");
+		String eldd_lastName = request.getParameter("lastname");
+		String eldd_firstName = request.getParameter("firstnname");
+		String eldd_lastYomi = request.getParameter("lastyomi");
+		String eldd_firstYomi = request.getParameter("firstyomi");
+		String eldd_gender = "";
+		if(request.getParameter("gender").equalsIgnoreCase("male")) {
+			eldd_gender = "M";
+		} else {
+			eldd_gender = "F";
+		}
+		String eldd_birth = request.getParameter("year")+request.getParameter("month")+request.getParameter("day");
 		
 		MemberVO vo = new MemberVO();
 		
 		vo.setEldd_id(eldd_id);
 		vo.setEldd_pw(eldd_pw);
-		vo.setEldd_name(eldd_name);
+		vo.setEldd_lastName(eldd_lastName);
+		vo.setEldd_firstName(eldd_firstName);
+		vo.setEldd_lastYomi(eldd_lastYomi);
+		vo.setEldd_firstYomi(eldd_firstYomi);
 		vo.setEldd_gender(eldd_gender);
 		vo.setEldd_birth(eldd_birth);
 		
-		if(returnNum == 0) {
-			dao.makeNewMember(vo);
-//			request.setAttribute("returnNum", returnNum);
-		} else {
-			request.setAttribute("returnNum", returnNum);
-		}
+		MemberDAO dao = new MemberDAO();
+		dao.makeNewMember(vo);
 
 	}
 

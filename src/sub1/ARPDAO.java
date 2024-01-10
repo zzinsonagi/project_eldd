@@ -16,7 +16,7 @@ public class ARPDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		String sql = " select eldd_foodName, eldd_foodCode from eldd_food where eldd_foodCode in ( "
+		String sql = " select eldd_foodName, eldd_foodCode, eldd_images from eldd_food where eldd_foodCode in ( "
 					+ " SELECT DISTINCT ROUND(DBMS_RANDOM.VALUE() * 10)+1 "
 					+ " FROM dual "
 					+ " CONNECT BY LEVEL <= 50 "
@@ -34,6 +34,8 @@ public class ARPDAO {
 			while(rs.next()) {
 				vo = new ARPVO();
 				vo.setEldd_foodName(rs.getString("eldd_foodName"));
+				vo.setEldd_foodCode(rs.getInt("eldd_foodCode"));
+				vo.setEldd_images(rs.getString("eldd_images"));
 				list.add(vo);
 			}
 			

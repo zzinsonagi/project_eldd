@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.MainService;
 import member.LoginIdService;
+import member.LogoutIdService;
 import member.makeMemberService;
+import searchCategoryPage.SearchCategoryPageService2;
+import searchCategoryPage.SearchSelectedPageService2;
+import searchPage.SearchPageService2;
 import sub1.Sub1Service;
-import sub4.Sub4Country5Service;
-import sub4.Sub4Female5Service;
-import sub4.Sub4Male5Service;
 import sub4.Sub4Service;
-import sub4.Sub4Tot5Service;
 
 
 @WebServlet("*.do")
@@ -49,36 +49,52 @@ public class elddController extends HttpServlet {
 		
 		//main, sub1, sub4, 회원가입, 로그인 순으로 작성
 		if(command.equals("/")||command.equals("/main.do")||command.equals("/*.do")) {
-			path = "index.jsp";
-		} else if(command.equals("/mainPrint.do")) {
+			path = "main.jsp";
+		} else if(command.equals("/randomresult.do")) {
 			new MainService().execute(request, response);
-			path = "mainPrint.jsp";
-		} else if(command.equals("/sub1View.do")) {
-			path = "/sub1/sub1View.jsp";
-		} else if(command.equals("/sub1Random.do")) {
+			path = "randomresult.jsp";
+		} else if(command.equals("/sub1.do")) {
+			path = "/sub1/sub1.jsp";
+		} else if(command.equals("/sub1random.do")) {
 			new Sub1Service().execute(request, response);
-			path = "/sub1/sub1Randomjsp";
-		} else if(command.equals("/sub4View.do")) {
+			path = "/sub1/sub1random.jsp";
+		} else if(command.equals("/sub4.do")) {
 			new Sub4Service().execute(request, response);
-			path = "/sub4/sub4View.jsp";
-		} else if(command.equals("/sub4Tot5.do")) {
-			new Sub4Tot5Service().execute(request, response);
-			path = "/sub4/sub4Tot5.jsp";
-		} else if(command.equals("/sub4Country5.do")) {
-			new Sub4Country5Service().execute(request, response);
-			path = "/sub4/sub4Country5.jsp";
-		} else if(command.equals("/sub4Female5.do")) {
-			new Sub4Female5Service().execute(request, response);
-			path = "/sub4/sub4Female5.jsp";
-		} else if(command.equals("/sub4Male5.do")) {
-			new Sub4Male5Service().execute(request, response);
-			path = "/sub4/sub4Male5.jsp";
-		} else if(command.equals("/newMember.do")) {
+			path = "/sub4/sub4.jsp";
+		} else if(command.equals("/join.do")) {
+			path = "/Member/join.jsp";
+		}  else if(command.equals("/joinPro.do")) {
 			new makeMemberService().execute(request, response);
-			path = "/member/makeMemberMain.jsp";
-		} else if(command.equals("/loginId.do")) {
+			response.sendRedirect("/login.do");
+		} else if(command.equals("/login.do")) {
+			path = "/Member/login.jsp";
+		} else if(command.equals("/loginPro.do")) {
 			new LoginIdService().execute(request, response);
-			path = "mainPrint.jsp";
+		} else if(command.equals("/logout.do")) {
+			new LogoutIdService().execute(request, response);
+		} else if(command.equals("/searchPage.do")) {
+			path="/searchPage/searchPage.jsp";
+		} else if(command.equals("/searchFoodList.do")) {
+			try {
+				new SearchPageService2().execute(request, response);
+				path="/searchPage/searchFoodList.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/searchCategoryPage.do")) {
+			try {
+				new SearchCategoryPageService2().execute(request, response);
+				path="/searchCategoryPage/searchCategoryPage.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/selectedCategoryPage.do")) {
+			try {
+				new SearchSelectedPageService2().execute(request, response);
+				path="/searchCategoryPage/searchSelectedCategoryPage.jsp";
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		
