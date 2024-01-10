@@ -1,0 +1,317 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+	font-family: 'Noto Sans JP', sans-serif;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	
+}
+
+/* background - 배경 */
+
+.intro_bg {
+	
+	width: 100%;
+	height: 90px;
+	
+}
+
+/* HEADER */
+
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    background: #fff;
+}
+
+#header {
+	left:0;
+	right:0;
+	margin:0 auto;
+	position: fixed;
+	background:#fff;
+}
+
+#header .header_wrap {
+	width: 1200px;
+	height: 72px;
+	flex-shrink: 0;
+	background: #fff;
+}
+
+.navbar-nav{
+	background:#fff;
+}
+
+
+/*header - 내비 스타일*/
+
+#header .header_wrap .navbar-brand {margin: 10px 0; padding: 0 26px;}
+
+#header .header_wrap .nav-link1 {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link2 {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link3 {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link4 {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-join {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-login {color: #fff; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 20px 3px; padding: 6px 20px; flex-shrink: 0; background:#000;}
+
+.navbar-default {
+	background: #fff;
+	border-color: #fff;
+}
+
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 0;
+    align-items: center;
+	background:#fff !important;
+}
+
+/*nav_default */
+
+
+
+
+/*section*/
+
+#main_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면의 높이를 100%로 설정 */
+}
+
+
+
+.con-random1 {
+    display: inline-block;
+	margin-top: 600px;
+}
+
+.re-random-btn {
+    display: inline-block;
+    width: 200px; /* 버튼 너비 조절 */
+    height: 50px; /* 버튼 높이 조절 */
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    line-height: 25px; /* 버튼 높이에 맞게 텍스트를 가운데 정렬 */
+	
+	border-radius: 25px;
+	background: #000;
+	
+	text-align: center;
+	font-family: Inter;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 1000; /* 폰트를 더 두껍게 설정 */
+	
+}
+
+#re_btn .a {
+	text-align: center;
+	font-family: Inter;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 10000;
+	line-height: normal;
+}
+
+a:focus, a:hover {
+    color:#000;
+    text-decoration: none;
+}
+
+.intro_text {
+	color:#fff;
+	width:100%;
+}
+
+.intro_text .p {
+	color:#fff;
+	font-size: 16px;
+}
+
+/*main, sub1 결과 페이지*/
+
+.img_rdresult {
+	width: 100px; /* 이미지의 너비를 조절하세요 */
+	height: auto; /* 높이를 자동 조절하여 비율을 유지합니다 */
+	margin-left: 700px; /* 왼쪽으로 이동할 마진을 조절하세요 */
+	margin-top: 20px; /* 위로 이동할 마진을 조절하세요 */
+	/* 또는 다른 위치 조절을 위해 position 속성 사용 가능
+		position: relative;
+		left: 50px;
+		top: 20px;
+	*/
+}
+
+
+/*sub2*/
+
+.other h2 {
+	text-align:center;
+}
+
+.section1 {
+	padding:60px 0 30px 0;
+}
+
+.other .container {
+	padding: 30px 0;
+	text-align: center;
+	position: relative;
+    z-index: -1;
+	
+}
+
+.select-area{
+	margin:50px 0;
+}
+
+.select-result-c,
+.select-result-i,
+.select-result-s {
+	
+	/*transition: color 0.3s, background-color 0.3s;*/
+	border : 1px solid #aaa;
+	padding:60px;
+	border-radius: 5px;
+	font-size: 36px;
+}
+
+.selected-label {
+    color: white ;
+    background-color: #FEA82F ;
+	font-size: 36px;
+	font-weight: bold;
+	border:transparent;
+}
+
+.line {
+        border: 1px solid #000; /* 선의 두께와 색상을 지정 */
+        margin: 20px 0; /* 선 위아래로 여백을 추가 */
+}
+
+.section2 {
+	text-align:center;
+	padding:40px 0;
+}
+
+.section2 .country{
+}
+
+.section2 .ingredient{
+}
+
+.section2 .season{
+}
+
+.section2 p{
+	display: inline;
+	margin-right:30px;
+}
+
+.section2 .line {
+    border: 1px solid #aaa; /* 선의 두께와 색상을 지정 */
+    margin: 50px auto; /* 선 위아래로 여백을 추가 */
+	width: auto;
+    position: relative;
+}
+
+
+
+		/*sub2 radio*/
+
+input[type="radio"] {
+    display: none;
+}
+
+.custom-radio {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #F5F7F8;
+    color: #000;
+    border-radius: 4px;
+	
+ }
+
+.custom-radio:hover {
+	background-color: #AAA;
+	color: #fff;
+}
+
+input[type="radio"]:checked + label {
+    background-color: #FEA82F;
+	color: #fff;
+    border-color: transparent;
+ }
+
+
+.custom-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.custom-button.clicked {
+    transform: scale(0.9);
+}
+
+.sub2-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 180px 0; /* 원하는 만큼 조절하세요 */
+}
+
+.sub2-btn button {
+    padding: 20px 40px;
+	font-size: 24px;
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.sub2-btn button:hover {
+    background-color: #FEA82F;
+}
+
+/*sub2*/
+
+
+
+
+
+/*footer*/
+
+#footer{
+	position: absolute;
+	width: 100%;
+	padding: 40px;
+	background: #333;
+	color:#fff;
+}
+
+#footer .footer_wrap {
+	width: 1200px;
+	height: 119px;
+	flex-shrink: 0;
+	font-size:12px;
+}
