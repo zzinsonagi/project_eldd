@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	
+	<!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" rel="stylesheet" />
+	
+    <!-- css -->
+    <link rel="stylesheet" href="../css/styles.css"/>
+	
+	<!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+
+    <title>オルメチュ</title>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <div class="intro_bg">
+        <header id="header">
+            <div class="header_wrap">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="main.html">
+                                <img src="../images/logo_tmp_b.png" />
+                            </a>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a class="nav-link1" href="sub1.html">選んでみて!</a></li>
+                                <li><a class="nav-link2" href="sub2.html">条件検索</a></li>
+                                <li><a class="nav-link3" href="sub3.html">キーワード</a></li>
+                                <li><a class="nav-link4" href="sub4.html">ランキング</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+									<li><a class="nav-join" href="join.html">会員登録</a></li>
+									<li><a class="nav-login" href="login.html">ログイン</a></li>
+									<li><a class="nav-mypage" href="mypage.html">マイページ</a></li>
+									<li><a class="nav-logout" href="">ログアウト</a></li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div>
+        </header>
+    </div>
+
+    <!-- HEADER -->
+	
+	
+  
+    <div class="bubble-container" id="bubble-container"></div>
+    <button id="stopButton">STOP!!!!</button>
+
+    <div class="modal" id="myModal">
+      <span class="close" id="closeModal">&times;</span>
+      <img src="" alt="Modal Image" id="modalImage" />
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const bubbleContainer = document.getElementById("bubble-container");
+        const stopButton = document.getElementById("stopButton");
+        let animationPaused = false;
+
+        // 이미지 클릭 시 모달 열기
+        function handleImageClick() {
+          const bubbleContent = this.querySelector(".bubble-content");
+          const title = this.getAttribute("data-title");
+          const description = this.getAttribute("data-description");
+
+          if (animationPaused) {
+            const modal = document.getElementById("myModal");
+            const modalImage = document.getElementById("modalImage");
+
+            const imageSrc = this.querySelector("img").src;
+            modalImage.src = imageSrc;
+
+            const contentText = `"${title} - ${description}"`;
+            bubbleContent.textContent = contentText;
+
+            modal.style.display = "flex";
+          }
+        }
+
+        // 스탑 버튼 클릭 시 애니메이션 일시정지/재개
+        stopButton.addEventListener("click", function () {
+          animationPaused = !animationPaused;
+          const bubbles = document.querySelectorAll(".bubble");
+          bubbles.forEach((bubble) => {
+            bubble.style.animationPlayState = animationPaused ? "paused" : "running";
+          });
+
+          // 애니메이션이 멈출 때 모달 닫기
+          if (animationPaused) {
+            closeModal();
+          }
+        });
+
+        // 모달 닫기 버튼 이벤트 핸들러 등록
+        const closeModalButton = document.getElementById("closeModal");
+        closeModalButton.addEventListener("click", closeModal);
+
+        // 이미지 배열
+        const imageArray = [
+          "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg",
+		  "../images/foodimages/japan/sushi.jpg"
+        ];
+
+        // 10개의 버블 생성
+        for (let i = 0; i < 10; i++) {
+          createBubble();
+        }
+
+        // 새로운 이미지와 중복 여부 확인
+        function isImageOverlap(newBubble, newIndex) {
+          const bubbles = document.querySelectorAll(".bubble");
+          for (const bubble of bubbles) {
+            if (newBubble !== bubble) {
+              const rect1 = newBubble.getBoundingClientRect();
+              const rect2 = bubble.getBoundingClientRect();
+
+              if (
+                !(
+                  rect1.x + rect1.width < rect2.x ||
+                  rect1.x > rect2.x + rect2.width ||
+                  rect1.y + rect1.height < rect2.y ||
+                  rect1.y > rect2.y + rect2.height
+                ) ||
+                newIndex === parseInt(bubble.getAttribute("data-index"))
+              ) {
+                return true;
+              }
+            }
+          }
+          return false;
+        }
+
+        // 버블 생성 함수
+        function createBubble() {
+          const bubble = document.createElement("div");
+          bubble.className = "bubble";
+          bubble.addEventListener("mouseover", handleMouseOver);
+          bubble.addEventListener("mouseout", handleMouseOut);
+          bubble.addEventListener("click", handleImageClick);
+
+          let randomImageIndex;
+          let isValidImage = false;
+
+          while (!isValidImage) {
+            randomImageIndex = Math.floor(Math.random() * imageArray.length);
+            isValidImage = !isImageOverlap(bubble, randomImageIndex);
+          }
+
+          bubble.setAttribute("data-index", randomImageIndex);
+          bubble.setAttribute("data-title", `Title ${randomImageIndex + 1}`);
+          bubble.setAttribute("data-description", `Description ${randomImageIndex + 1}`);
+
+          const randomX = Math.random() * window.innerWidth;
+          const randomY = Math.random() * window.innerHeight;
+
+          bubble.style.left = `${randomX}px`;
+          bubble.style.top = `${randomY}px`;
+
+          const img = document.createElement("img");
+          img.src = imageArray[randomImageIndex];
+
+          const randomSize = Math.floor(Math.random() * (200 - 50 + 1)) + 100;
+          bubble.style.width = `${randomSize}px`;
+          bubble.style.height = `${randomSize}px`;
+
+          img.style.width = "100%";
+          img.style.height = "100%";
+
+          bubble.appendChild(img);
+
+          const bubbleContent = document.createElement("div");
+          bubbleContent.className = "bubble-content";
+          bubble.appendChild(bubbleContent);
+
+          bubbleContainer.appendChild(bubble);
+        }
+
+        // 마우스 오버 이벤트 핸들러
+        function handleMouseOver() {
+          const bubbleContent = this.querySelector(".bubble-content");
+          if (animationPaused) {
+            const title = this.getAttribute("data-title");
+            const description = this.getAttribute("data-description");
+
+            bubbleContent.textContent = `"${title}"`;
+            bubbleContent.style.display = "block";
+          }
+        }
+
+        // 마우스 아웃 이벤트 핸들러
+        function handleMouseOut() {
+          const bubbleContent = this.querySelector(".bubble-content");
+          bubbleContent.style.display = "none";
+        }
+
+        // 모달 닫기 함수
+        function closeModal() {
+          const modal = document.getElementById("myModal");
+          modal.style.display = "none";
+        }
+
+        // 버블에 이벤트 핸들러 등록
+        bubbles.forEach((bubble) => {
+          bubble.addEventListener("mouseover", handleMouseOver);
+          bubble.addEventListener("mouseout", handleMouseOut);
+          bubble.addEventListener("click", handleImageClick);
+        });
+      });
+    </script>
+	
+	
+	
+	
+		<!-- FOOTER -->
+	
+    <footer id="footer">
+      <div class="footer_wrap">
+        <div class="row">
+          <div class="col-12">
+            <p>개인정보처리방침 | 이용약관 | 청소년보호정책 | 기사제보</p>
+          </div>
+          <p>
+            JSL인재 개발원 대표 : 채민경 (대전센터) 대전광역시 중구 계룡로 825 (용두동, 희영빌딩) 5층 7층 / (서울센터)서울 특별시 송파구 올림픽로 35길 104 ( 장미C상가 403호 )
+          </p>
+          <p>
+            고객센터 : 042-242-4412 팩스 : 042-242-4413 사업자등록번호 : 305-86-06709 통신판매신고번호 :
+            제2019-대전중구-0567호 사업자정보확인 인터넷신문등록일 : 2019.02.19
+          </p>
+          <p>등록번호 : 대전 아0325 발행인 : 박장수 편집인 : 박장수 청소년보호책임자 : 김현우</p>
+        </div>
+      </div>
+    </footer>
+	
+	<!-- FOOTER -->
+		
+		
+</body>
+
+</html>

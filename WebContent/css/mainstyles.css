@@ -1,0 +1,214 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+	font-family: 'Noto Sans JP', sans-serif;
+	margin: 0 auto;
+	padding: 0;
+	box-sizing: border-box;
+	
+}
+
+
+/* background - 배경 */
+
+.intro_bg {
+	
+	background-image: url("../images/main_bg.gif");
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	width: 100%;
+	height: 900px;
+	
+}
+
+.intro_bg_sub1 {
+	
+	background-image: url("../images/sub1_bg.jpg");
+	background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	width: 100%;
+	height: 900px;
+	
+}
+
+
+
+/* HEADER */
+
+#header {
+	left:0;
+	right:0;
+	margin:0 auto;
+	position: fixed;
+}
+
+#header .header_wrap {
+	width: 100%;
+	height: 72px;
+	flex-shrink: 0;
+	background: transparent;
+}
+
+
+/*header - 내비 스타일*/
+
+#header .header_wrap .navbar-brand {margin: 10px 0; padding: 0 26px;}
+
+#header .header_wrap .nav-link1 {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link2 {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link3 {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-link4 {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-join {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-login {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 20px 3px; padding: 6px 20px; flex-shrink: 0; background:#fff;}
+
+#header .header_wrap .nav-mypage {color: #FFF; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 26px 0; padding: 0 26px; flex-shrink: 0;}
+
+#header .header_wrap .nav-logout {color: #000; text-align: center; font-family: Inter; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; text-decoration: none; margin: 20px 3px; padding: 6px 20px; flex-shrink: 0; background:#fff;}
+
+
+
+.container-fluid {
+    
+	width: 100%;
+	background: transparent;
+	/*
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	*/
+}
+
+.navbar-default {
+	background: transparent;
+    border-color: transparent;
+}
+
+.navbar-collapse {
+    flex-basis: 100%;
+    flex-grow: 0;
+    align-items: center;
+}
+
+/*nav_default */
+
+
+
+/*스타트 버튼*/
+
+#main_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 화면의 높이를 100%로 설정 */
+}
+
+.container {
+    text-align: center;
+}
+
+.con-random1 {
+    display: inline-block;
+	margin-top: 500px;/*버튼 높이 설정*/
+}
+
+.random-startbtn {
+    display: inline-block;
+    width: 325px; /* 버튼 너비 조절 */
+    height: 109px; /* 버튼 높이 조절 */
+    padding: 10px 20px;
+    color: #000;
+    text-decoration: none;
+    line-height: 89px; /* 버튼 높이에 맞게 텍스트를 가운데 정렬 */
+	
+	border-radius: 54.5px;
+	background: #FFF;
+	
+	text-align: center;
+	font-family: Inter;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 1000; /* 폰트를 더 두껍게 설정 */
+	
+}
+
+#main_btn .a {
+	text-align: center;
+	font-family: Inter;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 10000;
+	line-height: normal;
+}
+
+a:focus, a:hover {
+    color:#000;
+    text-decoration: none;
+}
+
+
+
+/*메인 텍스트*/
+
+.intro_text h1{
+	color: #fff;
+	width: 50%;
+	text-align: center;
+	position: absolute;
+	top: 270px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	font-weight: bold;
+	
+}
+
+.intro_text .p1 {
+	color:#fff;
+	font-size: 16px;
+	text-align:center;
+	width: 50%;
+	position: absolute;
+	top: 370px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+.intro_text .p2 {
+	color:#fff;
+	font-size: 16px;
+	text-align:center;
+	width: 50%;
+	position: absolute;
+	top: 400px;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	
+}
+
+
+/*footer*/
+
+#footer{
+	position: absolute;
+	width: 100%;
+	padding: 40px;
+	background: #333;
+	color:#fff;
+}
+
+#footer .footer_wrap {
+	width: 1200px;
+	height: 119px;
+	flex-shrink: 0;
+	font-size:12px;
+}
