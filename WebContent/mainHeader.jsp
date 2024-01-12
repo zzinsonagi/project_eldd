@@ -59,7 +59,7 @@
 					<li><a class="nav-link4" href="sub4.do">ランキング</a></li>
 				  </ul>
 				  <ul class="nav navbar-nav navbar-right">
-					<li><a class="nav-join" href="join.do">会員登録</a></li>
+					<li><a class="nav-join" href="terms.do">会員登録</a></li>
 					<li><a class="nav-login" href="login.do">ログイン</a></li>
 					<li><a class="nav-mypage" href="mypage.do">マイページ</a></li>
 					<li><a class="nav-logout" href="">ログアウト</a></li>

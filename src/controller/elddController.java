@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import main.MainService;
+import member.CerCheckService;
+import member.EmailCheckService;
+import member.IdCheckService;
 import member.LoginIdService;
 import member.LogoutIdService;
 import member.makeMemberService;
@@ -61,11 +64,30 @@ public class elddController extends HttpServlet {
 		} else if(command.equals("/sub4.do")) {
 			new Sub4Service().execute(request, response);
 			path = "/sub4/sub4.jsp";
+		} else if(command.equals("/terms.do")) {
+			char ran = (char)((Math.random()*26)+65);
+			request.setAttribute("ran", ran);
+			path = "/Member/terms.jsp";
 		} else if(command.equals("/join.do")) {
+			String chk = request.getParameter("check");
+			System.out.println(chk);
+			request.setAttribute("check", chk);
 			path = "/Member/join.jsp";
-		}  else if(command.equals("/joinPro.do")) {
+		} else if(command.equals("/idCheck.do")) {
+			new IdCheckService().execute(request, response);
+
+		
+		
+		} else if(command.equals("/emailsend.do")) {
+			new EmailCheckService().execute(request, response);
+		} else if(command.equals("/certinumber.do")) {
+			new CerCheckService().execute(request, response);
+		} else if(command.equals("/joinPro.do")) {
 			new makeMemberService().execute(request, response);
-			response.sendRedirect("/login.do");
+			//response.sendRedirect("/main.do");
+			path = "main.jsp";
+			
+			
 		} else if(command.equals("/login.do")) {
 			path = "/Member/login.jsp";
 		} else if(command.equals("/loginPro.do")) {
