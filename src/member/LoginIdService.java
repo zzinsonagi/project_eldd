@@ -36,7 +36,7 @@ public class LoginIdService implements Action {
 			}
 		} else if(returnNum == 0 || returnNum == -1) {
 			request.setAttribute("warnMsg", "ID及びPASSWORDをお確認してください。");
-			RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/Member/login.jsp");
 			try {
 				rd.forward(request, response);
 			} catch (Exception e) {

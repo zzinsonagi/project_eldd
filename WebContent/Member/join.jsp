@@ -24,8 +24,21 @@
     <!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styles.css"/>
 	
-    
+	
+	<!-- 1월 12일 Update -->
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+    <c:set var="check" value="${check }"></c:set>
+    <c:if test="${check == null }">
+    	<script>
+    		alert("잘못된 접근입니다");
+    		location.href="terms.do";
+   	</script>
+    </c:if>
+	<!-- Update 끝 -->
 
+
+	
     <title>オルメチュ</title>
 </head>
 
@@ -46,7 +59,7 @@
           <h3>会員登録</h3>
         </div>
         <div>
-          <form name="join" method="post" action="" id="join" onsubmit="return fn_save()">
+          <form name="join" method="post" action="joinPro.do" id="join" onsubmit="return fn_save()">
 	
               <label>ID</label>
 				<div class = "msg">
@@ -55,13 +68,13 @@
 				</div>
               <label>PASSWORD</label>
 				<div class = "msg">
-					<input class="w3-input" type="text" id="pw" name="pw" placeholder="パスワードを入力してください"/>
+					<input class="w3-input" type="password" id="pw" name="pw" placeholder="パスワードを入力してください"/>
 					<p id="pwmsg"></p>
 				</div>
           
               <label>PASSWORD 確認</label>
 				<div class = "msg">
-					<input class="w3-input" type="text" id="pw2" name="pw2" placeholder="パスワードを確認してください"/>
+					<input class="w3-input" type="password" id="pw2" name="pw2" placeholder="パスワードを確認してください"/>
 					<p id="pw2msg"></p>
 				</div>
           
@@ -107,8 +120,9 @@
 			
            
 		    <p class="w3-center" style="display: flex; justify-content: space-between;">
-             <button type="submit" class="join-btn">ログイン</button>
-			  <button type="submit" class="join-btn">会員登録</button>
+            	<button type="submit" class="join-btn">ログイン</button>
+<!-- 지현아 위에 login 쪽의 submit은 말고 다른거 써줬으면 해  -->
+			 	<button type="submit" class="join-btn">会員登録</button>
             </p>
           </form>
           <br />
@@ -206,6 +220,27 @@
 	       } else {
 	          $("#idmsg").html("");
 	       }
+	       $.ajax({
+	    	   type:'post',
+	    	   url:'idCheck.do',
+	    	   data:{id:$("#id").val()}, //서버에게 보내는 데이터
+				success:function(data){ //비동기식 데이터 처리가 성공했을때
+					//alert(data+"는 사용할 수 있는 아이디입니다.");
+					if(data != 1){
+						if($("#id").val() != null){
+							$("#idmsg").html("<span style='color:#008000;'>사용가능한 아이디입니다.</span>");
+						}
+					} else {
+						if($("#id").val() != ""){
+							$("#idmsg").html("<span style='color:#f00;'>사용불가한 아이디입니다. 다른 아이디를 입력하세요.</span>");
+							$("#id").val("");
+							$("#id").focus();
+						}
+					}
+				}, error:function(xhr, status, error){
+					alert("통신에러!");
+				}
+	       })
 	    })
 		
 		$("#pw").blur(function(){
@@ -237,8 +272,57 @@
 	       }
 	       
 	    })
+
 	    
+	    //email 확인
+	    $("#btn-email").on("click", function(){
+				var email = $("#email").val();
+				if(email == ""){
+					alert("이메일 주소를 입력하세요.");
+					$("#email").focus();
+				} else {
+					$.ajax({
+						type:'post',
+						url:'emailsend.do',
+						data:{"email":$("#email").val()},
+						dataType:'json', //서버에서 return해주는 값은 json형식{key:value}의 데이터 값으로 받겠다
+						success:function(data){
+							alert(data.msg);
+						}, error:function(){
+							alert("통신에러"); //메일 보내고선 아무것도 안 넘어와서 에러 떴던 것
+						}
+					})
+				}
+		})
 	    
+		
+	    //비동기식 인증 확인
+	    $("#email-ok").on("click", function(){
+				var certinumber = $("#certinumber").val();
+				if(certinumber == ""){
+					alert("인증번호를 입력하세요");
+					$("#certinumber").focus();
+				} else {
+					$.ajax({
+						type:"post",
+						data:{"certinumber":certinumber},
+						url:"certinumber.do",
+						dataType:"json",
+						success:function(data){
+							if(data.check == "not ok"){
+								sendCheck = 0;
+								alert(data.msg);
+							} else {
+								sendCheck = 1;
+								alert(data.msg);
+							}
+						}, error:function(){
+							alert("통신에러 발생");
+						}
+					})
+				}
+		})
+			
  });
 		
 		
