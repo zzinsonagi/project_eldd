@@ -21,16 +21,12 @@ public class makeMemberService implements Action {
 		String eldd_id = request.getParameter("id");
 		String eldd_pw = request.getParameter("pw");
 		String eldd_lastName = request.getParameter("lastname");
-		String eldd_firstName = request.getParameter("firstnname");
+		String eldd_firstName = request.getParameter("firstname");
 		String eldd_lastYomi = request.getParameter("lastyomi");
 		String eldd_firstYomi = request.getParameter("firstyomi");
-		String eldd_gender = "";
-		if(request.getParameter("gender").equalsIgnoreCase("male")) {
-			eldd_gender = "M";
-		} else {
-			eldd_gender = "F";
-		}
+		String eldd_gender = "gender";
 		String eldd_birth = request.getParameter("year")+request.getParameter("month")+request.getParameter("day");
+		String eldd_mail = request.getParameter("email");
 		
 		MemberVO vo = new MemberVO();
 		
@@ -42,9 +38,11 @@ public class makeMemberService implements Action {
 		vo.setEldd_firstYomi(eldd_firstYomi);
 		vo.setEldd_gender(eldd_gender);
 		vo.setEldd_birth(eldd_birth);
+		vo.setEldd_mail(eldd_mail);
 		
 		MemberDAO dao = new MemberDAO();
-		dao.makeNewMember(vo);
+		String warnText = dao.makeNewMember(vo);
+		System.out.println(warnText);
 
 	}
 

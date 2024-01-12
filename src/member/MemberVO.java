@@ -14,6 +14,7 @@ public class MemberVO {
 	private int eldd_month;
 	private int eldd_day;
 	private String eldd_birth;
+	private String eldd_mail;
 	
 	//eldd_div
 	private String eldd_country;
@@ -93,6 +94,13 @@ public class MemberVO {
 	}
 	public void setEldd_day(int eldd_day) {
 		this.eldd_day = eldd_day;
+	}
+	
+	public String getEldd_mail() {
+		return eldd_mail;
+	}
+	public void setEldd_mail(String eldd_mail) {
+		this.eldd_mail = eldd_mail;
 	}
 	public String getEldd_country() {
 		return eldd_country;
